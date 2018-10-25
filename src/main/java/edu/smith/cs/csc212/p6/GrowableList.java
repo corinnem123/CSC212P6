@@ -1,6 +1,7 @@
 package edu.smith.cs.csc212.p6;
 
 import edu.smith.cs.csc212.p6.errors.P6NotImplemented;
+import edu.smith.cs.csc212.p6.errors.RanOutOfSpaceError;
 
 public class GrowableList<T> implements P6List<T> {
 	public static final int START_SIZE = 32;
@@ -29,7 +30,8 @@ public class GrowableList<T> implements P6List<T> {
 
 	@Override
 	public void addFront(T item) {
-		throw new P6NotImplemented();
+		addIndex(item, 0);
+		//throw new P6NotImplemented();
 	}
 
 	@Override
@@ -43,7 +45,16 @@ public class GrowableList<T> implements P6List<T> {
 
 	@Override
 	public void addIndex(T item, int index) {
-		throw new P6NotImplemented();
+		if (fill >= array.length) {
+			throw new RanOutOfSpaceError();
+		}
+		// loop backwards, shifting items to the right.
+		for (int j=fill; j>index; j--) {
+			array[j] = array[j-1];
+		}
+		array[index] = item;
+		fill++;		
+		//throw new P6NotImplemented();
 	}
 	
 	@Override

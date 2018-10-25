@@ -23,9 +23,10 @@ public class FixedSizeList<T> implements P6List<T> {
 		if (this.size() == 0) {
 			throw new EmptyListError();
 		}
+		System.out.println(fill);
+		T value = this.getIndex(fill -1);
+		this.array[fill-1] = null;
 		fill--;
-		T value = this.getIndex(fill);
-		this.array[fill] = null;
 		return value;
 	}
 
@@ -77,6 +78,7 @@ public class FixedSizeList<T> implements P6List<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	//returning the thing at the index, not the index
 	public T getIndex(int index) {
 		if (index < 0 || index >= fill) {
 			throw new BadIndexError();
