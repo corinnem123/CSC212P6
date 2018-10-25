@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import edu.smith.cs.csc212.p6.errors.EmptyListError;
 import edu.smith.cs.csc212.p6.errors.P6NotImplemented;
+import edu.smith.cs.csc212.p6.errors.RanOutOfSpaceError;
 
 public class SinglyLinkedList<T> implements P6List<T>, Iterable<T> {
 	/**
@@ -32,6 +33,8 @@ public class SinglyLinkedList<T> implements P6List<T>, Iterable<T> {
 	@Override
 	public void addFront(T item) {
 		this.start = new Node<T>(item, start);
+		next = new Node<T>
+		addIndex(item, start+1);
 	}
 
 	@Override
@@ -56,6 +59,16 @@ public class SinglyLinkedList<T> implements P6List<T>, Iterable<T> {
 
 	@Override
 	public T getIndex(int index) {
+		//throw new P6NotImplemented();
+		int count = 0;
+		for (Node<T> n = this.start; n != null; n = n.next) {
+			if (count == index) {
+				return n.value;
+				
+			}
+			count++;
+		}
+		
 		throw new P6NotImplemented();
 	}
 
